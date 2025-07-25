@@ -2,10 +2,11 @@ package main
 
 import (
 	"log"
+	"os"
 
-	"github.com/joho/godotenv"
 	"github.com/SinofPride-999/student-time-management/config"
 	"github.com/SinofPride-999/student-time-management/routes"
+	"github.com/joho/godotenv"
 )
 
 func main() {
@@ -22,6 +23,12 @@ func main() {
 	// Setup router
 	r := routes.SetupRouter(config.DB)
 	
+	// Get port from environment
+	port := os.Getenv("PORT")
+	if port == "" {
+		port = "8080" // fallback for local dev
+	}
+
 	// Start server
-	log.Fatal(r.Run(":8080"))
+	log.Fatal(r.Run(":" + port))
 }
