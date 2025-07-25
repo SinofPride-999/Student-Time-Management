@@ -1,0 +1,48 @@
+/* Base styles */
+body {
+    font-family: 'Inter', sans-serif;
+}
+
+/* Task card transitions */
+.task-card {
+    transition: all 0.3s ease;
+}
+
+/* Modal animation */
+#editModal div {
+    transition: all 0.3s ease;
+}
+
+/* Button hover effects */
+.btn-hover {
+    transition: all 0.3s ease;
+}
+
+.btn-hover:hover {
+    transform: translateY(-2px);
+}
+
+/* Input focus effects */
+input:focus, textarea:focus, select:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.3);
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}

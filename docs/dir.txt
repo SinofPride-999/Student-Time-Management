@@ -1,0 +1,24 @@
+/project
+├── main.go
+├── go.mod
+├── go.sum
+├── /config
+│   └── database.go
+├── /controllers
+│   ├── task_controller.go
+│   └── user_controller.go
+├── /middlewares
+│   └── auth.go
+├── /models
+│   ├── task.go
+│   └── user.go
+├── /routes
+│   └── routes.go
+├── /static
+│   ├── /css
+│   ├── /js
+│   └── /images
+└── /templates
+    ├── /layouts
+    ├── /pages
+    └── /partials
