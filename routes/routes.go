@@ -60,7 +60,7 @@ func SetupRouter(db *gorm.DB) *gin.Engine {
 
 	// User routes
 	userController := controllers.NewUserController(db)
-	r.GET("/", func(c *gin.Context) { c.Redirect(http.StatusFound, "/dashboard") })
+	r.GET("/", userController.ShowLogin)
 	r.GET("/signup", userController.ShowSignup)
 	r.POST("/signup", userController.Signup)
 	r.GET("/login", userController.ShowLogin)
