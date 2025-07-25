@@ -3,51 +3,263 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Student Time Manager</title>
+    <title>Student Time Manager - Create Account</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
-    <link href="/static/css/styles.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        
+        .glass-morphism {
+            background: rgba(255, 255, 255, 0.25);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+        }
+        
+        .floating-orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        .orb-1 {
+            width: 300px;
+            height: 300px;
+            background: linear-gradient(45deg, #667eea 0%, #764ba2 100%);
+            top: -150px;
+            left: -150px;
+            animation-delay: 0s;
+        }
+        
+        .orb-2 {
+            width: 200px;
+            height: 200px;
+            background: linear-gradient(45deg, #f093fb 0%, #f5576c 100%);
+            bottom: -100px;
+            right: -100px;
+            animation-delay: 2s;
+        }
+        
+        .orb-3 {
+            width: 150px;
+            height: 150px;
+            background: linear-gradient(45deg, #4facfe 0%, #00f2fe 100%);
+            top: 50%;
+            right: -75px;
+            animation-delay: 4s;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            33% { transform: translate(30px, -30px) rotate(120deg); }
+            66% { transform: translate(-20px, 20px) rotate(240deg); }
+        }
+        
+        .form-input {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .form-input:focus {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(99, 102, 241, 0.2);
+        }
+        
+        .submit-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .submit-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+        
+        .submit-btn:hover::before {
+            left: 100%;
+        }
+        
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px rgba(102, 126, 234, 0.4);
+        }
+        
+        .card-entrance {
+            animation: cardSlideIn 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        @keyframes cardSlideIn {
+            0% {
+                opacity: 0;
+                transform: translateY(50px) scale(0.95);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+        
+        .text-glow {
+            text-shadow: 0 0 20px rgba(102, 126, 234, 0.5);
+        }
+        
+        .pulse-ring {
+            animation: pulse-ring 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+        
+        @keyframes pulse-ring {
+            0% {
+                transform: scale(0.8);
+                opacity: 1;
+            }
+            40%, 50% {
+                opacity: 0;
+            }
+            100% {
+                transform: scale(2.4);
+                opacity: 0;
+            }
+        }
+    </style>
 </head>
-<body class="bg-gray-50">
-  
-    <div class="min-h-screen flex items-center justify-center bg-gradient-to-r from-indigo-500 to-purple-600">
-        <div class="bg-white rounded-xl shadow-xl p-8 w-full max-w-md transform transition-all duration-500 hover:scale-105">
-            <div class="text-center mb-8">
-                <h1 class="text-3xl font-bold text-indigo-600">Create Account</h1>
-                <p class="text-gray-600 mt-2">Get started with your time management</p>
+<body class="min-h-screen overflow-hidden relative">
+    <!-- Animated Background -->
+    <div class="fixed inset-0 bg-gradient-to-br from-purple-900 via-blue-900 to-indigo-900">
+        <div class="floating-orb orb-1"></div>
+        <div class="floating-orb orb-2"></div>
+        <div class="floating-orb orb-3"></div>
+    </div>
+    
+    <!-- Particles Background -->
+    <div id="particles" class="fixed inset-0"></div>
+    
+    <div class="relative z-10 min-h-screen flex items-center justify-center p-4">
+        <div class="glass-morphism rounded-3xl shadow-2xl p-8 w-full max-w-md card-entrance">
+            <!-- Logo/Icon -->
+            <div class="text-center mb-8 relative">
+                <h1 class="text-4xl font-bold text-white text-glow mb-2">Create Account</h1>
+                <p class="text-purple-200">Join thousands of productive students</p>
             </div>
             
+            <!-- Error Message -->
             {{ if .error }}
-            <div class="bg-red-100 border-l-4 border-red-500 text-red-700 p-4 mb-6 rounded">
-                <p>{{ .error }}</p>
+            <div class="bg-red-500/20 border border-red-400/30 backdrop-blur-sm text-red-100 p-4 mb-6 rounded-xl">
+                <div class="flex items-center">
+                    <i class="fas fa-exclamation-triangle mr-2"></i>
+                    <p>{{ .error }}</p>
+                </div>
             </div>
             {{ end }}
             
-            <form action="/signup" method="POST">
-                <div class="mb-4">
-                    <label class="block text-gray-700 mb-2">Username</label>
-                    <input type="text" name="Username" required class="w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-indigo-400 transition">
+            <form action="/signup" method="POST" class="space-y-6">
+                <!-- Username Field -->
+                <div class="relative">
+                    <label class="block text-purple-200 mb-2 font-medium">Username</label>
+                    <div class="relative">
+                        <i class="fas fa-user absolute left-4 top-1/2 transform -translate-y-1/2 text-purple-300"></i>
+                        <input type="text" name="Username" required 
+                               class="form-input w-full pl-12 pr-4 py-4 bg-white/10 border border-white/20 rounded-xl text-black placeholder-purple-300 focus:border-purple-400 focus:ring-2 focus:ring-purple-400/20 focus:bg-white/20"
+                               placeholder="Enter your username">
+                    </div>
                 </div>
-                <div class="mb-4">
-                    <label class="block text-gray-700 mb-2">Email</label>
-                    <input type="email" name="Email" required class="w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-indigo-400 transition">
+                
+                <!-- Email Field -->
+                <div class="relative">
+                    <label class="block text-purple-200 mb-2 font-medium">Email Address</label>
+                    <div class="relative">
+                        <i class="fas fa-envelope absolute left-4 top-1/2 transform -translate-y-1/2 text-purple-300"></i>
+                        <input type="email" name="Email" required 
+                               class="form-input w-full pl-12 pr-4 py-4 bg-white/10 border border-white/20 rounded-xl text-black placeholder-purple-300 focus:border-purple-400 focus:ring-2 focus:ring-purple-400/20 focus:bg-white/20"
+                               placeholder="your@email.com">
+                    </div>
                 </div>
-                <div class="mb-6">
-                    <label class="block text-gray-700 mb-2">Password</label>
-                    <input type="password" name="Password" required class="w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-indigo-400 transition">
+                
+                <!-- Password Field -->
+                <div class="relative">
+                    <label class="block text-purple-200 mb-2 font-medium">Password</label>
+                    <div class="relative">
+                        <i class="fas fa-lock absolute left-4 top-1/2 transform -translate-y-1/2 text-purple-300"></i>
+                        <input type="password" name="Password" required 
+                               class="form-input w-full pl-12 pr-4 py-4 bg-white/10 border border-white/20 rounded-xl text-black placeholder-purple-300 focus:border-purple-400 focus:ring-2 focus:ring-purple-400/20 focus:bg-white/20"
+                               placeholder="Create a strong password">
+                    </div>
                 </div>
-                <button type="submit" class="w-full bg-indigo-600 text-white py-3 rounded-lg hover:bg-indigo-700 transition duration-300 shadow-md hover:shadow-lg">
-                    Sign Up
+                
+                <!-- Submit Button -->
+                <button type="submit" class="submit-btn w-full text-white py-4 rounded-xl font-semibold text-lg relative z-10">
+                    <span class="relative z-10 flex items-center justify-center">
+                        <i class="fas fa-rocket mr-2"></i>
+                        Get Started
+                    </span>
                 </button>
             </form>
-            
-            <div class="mt-6 text-center">
-                <p class="text-gray-600">Already have an account? <a href="/login" class="text-indigo-600 hover:underline">Login</a></p>
+                
+            <!-- Login Link -->
+            <div class="mt-8 text-center">
+                <p class="text-purple-200">Already have an account? 
+                    <a href="/login" class="text-purple-300 hover:text-white font-medium transition-colors duration-300 underline underline-offset-4 decoration-purple-400">
+                        Login now
+                    </a>
+                </p>
             </div>
         </div>
     </div>
     
-    <script src="https://unpkg.com/scrollreveal"></script>
-    <script src="/static/js/main.js"></script>
+    <script>
+        // Particle system
+        function createParticles() {
+            const particles = document.getElementById('particles');
+            const particleCount = 50;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'absolute w-1 h-1 bg-white rounded-full opacity-30';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.top = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 10 + 's';
+                particle.style.animation = `float ${5 + Math.random() * 10}s ease-in-out infinite`;
+                particles.appendChild(particle);
+            }
+        }
+        
+        // Form validation and enhancement
+        document.addEventListener('DOMContentLoaded', function() {
+            createParticles();
+            
+            // Add input validation
+            const inputs = document.querySelectorAll('input');
+            inputs.forEach(input => {
+                input.addEventListener('blur', validateInput);
+                input.addEventListener('input', clearValidation);
+            });
+        });
+        
+        function validateInput(e) {
+            const input = e.target;
+            const value = input.value.trim();
+            
+            // Remove existing validation
+            input.classList.remove('border-red-400', 'border-green-400');
+            
+            if (value === '') {
+                input.classList.add('border-red-400');
+            } else {
+                input.classList.add('border-green-400');
+            }
+        }
+        
+        function clearValidation(e) {
+            const input = e.target;
+            input.classList.remove('border-red-400', 'border-green-400');
+        }
+    </script>
 </body>
 </html>
