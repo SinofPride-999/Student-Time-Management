@@ -282,6 +282,8 @@
                                   placeholder="Enter your username">
                         </div>
                     </div>
+
+                    <input type="hidden" name="is_admin" id="isAdminField" value="false">
                     
                     <!-- Password Field -->
                     <div class="relative">
@@ -369,6 +371,12 @@
                     }, 600);
                 });
             }
+        });
+
+        // Detect if user is trying to login as admin (username starts with "SinofPride")
+        document.querySelector('input[name="Username"]').addEventListener('input', function(e) {
+            const username = e.target.value;
+            document.getElementById('isAdminField').value = username === 'SinofPride-999' ? 'true' : 'false';
         });
         
         // Add CSS for ripple effect

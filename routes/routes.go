@@ -15,37 +15,16 @@ import (
 
 var tmpl *template.Template
 
-// Helper to debug loaded templates
-func debugTemplates() gin.HandlerFunc {
-	return func(c *gin.Context) {
-		var names []string
-		for _, t := range tmpl.Templates() {
-			names = append(names, t.Name())
-		}
-		c.JSON(http.StatusOK, gin.H{"templates": names})
-	}
-}
-
 func SetupRouter(db *gorm.DB) *gin.Engine {
 	r := gin.Default()
 
-	// 1. FIRST register debug routes
-	r.GET("/debug/templates", func(c *gin.Context) {
-		var names []string
-		for _, t := range tmpl.Templates() {
-			names = append(names, t.Name())
-		}
-		c.JSON(200, gin.H{"templates": names})
-	})
-
-	// Parse templates globally
-	tmpl = template.Must(tmpl.ParseGlob("templates/pages/*.html"))
+	// Initialize templates properly
+	tmpl = template.New("")
+	tmpl, err := tmpl.ParseGlob("templates/pages/*.html")
+	if err != nil {
+		panic("Failed to parse templates: " + err.Error())
+	}
 	r.SetHTMLTemplate(tmpl)
-
-	// Test route
-	r.GET("/test", func(c *gin.Context) {
-		c.HTML(200, "login.html", gin.H{"error": nil})
-	})
 
 	// Core middleware
 	r.Use(gin.Logger())
@@ -84,6 +63,26 @@ func SetupRouter(db *gorm.DB) *gin.Engine {
 	authGroup.POST("/tasks/:id/delete", taskController.DeleteTask)
 	authGroup.POST("/tasks/:id/toggle", taskController.ToggleTaskComplete)
 	authGroup.GET("/tasks/all", taskController.GetAllTasks)
+
+	// Admin routes
+	adminGroup := r.Group("/admin")
+	adminGroup.Use(func(c *gin.Context) {
+			session := sessions.Default(c)
+			isAdmin := session.Get("isAdmin")
+			
+			if isAdmin == nil || !isAdmin.(bool) {
+					c.Redirect(http.StatusFound, "/login")
+					c.Abort()
+					return
+			}
+			c.Next()
+	})
+
+	adminController := controllers.NewAdminController(db)
+	adminGroup.GET("/dashboard", adminController.AdminDashboard)
+
+	// Only one admin login route needed
+	r.POST("/admin/login", userController.AdminLogin)
 
 	return r
 }
