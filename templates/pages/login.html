@@ -86,9 +86,15 @@
                 transform: translateX(0) scale(1);
             }
         }
+
+        i.fas.fa-user, i.fas.fa-lock, i.fas.fa-envelope {
+            left: 1rem !important; /* Adjusted left position */
+            font-size: 1rem !important; /* Standard icon size */
+        }
         
         .form-input {
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            padding-left: 2.75rem !important;
         }
         
         .form-input:focus {
@@ -143,6 +149,70 @@
             transform: translateY(-5px);
             background: rgba(255, 255, 255, 0.15);
         }
+
+        /* Mobile optimizations */
+        @media (max-width: 640px) {
+            .glass-morphism {
+                padding: 1.5rem !important;
+            }
+            
+            .form-input {
+                padding: 0.75rem 0.75rem 0.75rem 1rem !important;
+                font-size: 0.9rem !important;
+            }
+            
+            .login-btn {
+                padding: 0.75rem !important;
+                font-size: 1rem !important;
+            }
+            
+            .welcome-animation h1 {
+                font-size: 2rem !important;
+            }
+            
+            .welcome-animation p {
+                font-size: 1rem !important;
+            }
+            
+            .stats-card div:first-child {
+                font-size: 1.5rem !important;
+            }
+            
+            .stats-card div:last-child {
+                font-size: 0.75rem !important;
+            }
+            
+            .form-container {
+                margin: 0.5rem !important;
+            }
+            
+            .form-container h2 {
+                font-size: 1.5rem !important;
+            }
+            
+            .form-container p {
+                font-size: 0.9rem !important;
+            }
+            
+            .flex.items-center.justify-between.text-sm {
+                font-size: 0.8rem !important;
+            }
+            
+            .mt-8.text-center p {
+                font-size: 0.9rem !important;
+            }
+            
+            i.fas {
+                font-size: 0.9rem !important;
+                left: 3rem !important;
+            }
+        
+            i.fas.fa-user, i.fas.fa-lock, i.fas.fa-envelope {
+                left: 0.75rem !important; /* Adjusted for mobile */
+                font-size: 0.9rem !important; /* Slightly smaller on mobile */
+                margin-right: 30px;
+            }
+        }
     </style>
 </head>
 <body class="min-h-screen overflow-hidden relative">
@@ -185,16 +255,16 @@
         </div>
         
         <!-- Right Side - Login Form -->
-        <div class="flex-1 flex items-center justify-center p-8">
-            <div class="glass-morphism rounded-3xl shadow-2xl p-8 w-full max-w-md form-container">
-                <div class="text-center mb-8">
-                    <h2 class="text-3xl font-bold text-white mb-2">Sign In</h2>
-                    <p class="text-purple-200">Access your productivity dashboard</p>
+        <div class="flex-1 flex items-center justify-center p-4 sm:p-8">
+            <div class="glass-morphism rounded-3xl shadow-2xl p-6 sm:p-8 w-full max-w-md form-container">
+                <div class="text-center mb-6 sm:mb-8">
+                    <h2 class="text-2xl sm:text-3xl font-bold text-white mb-2">Sign In</h2>
+                    <p class="text-purple-200 text-sm sm:text-base">Access your productivity dashboard</p>
                 </div>
                 
                 <!-- Error Message -->
                 {{ if .error }}
-                <div class="bg-red-500/20 border border-red-400/30 backdrop-blur-sm text-red-100 p-4 mb-6 rounded-xl">
+                <div class="bg-red-500/20 border border-red-400/30 backdrop-blur-sm text-red-100 p-3 sm:p-4 mb-4 sm:mb-6 rounded-xl text-sm sm:text-base">
                     <div class="flex items-center">
                         <i class="fas fa-exclamation-circle mr-2"></i>
                         <p>{{ .error }}</p>
@@ -202,31 +272,29 @@
                 </div>
                 {{ end }}
                 
-                <form action="/login" method="POST" class="space-y-6">
+                <form action="/login" method="POST" class="space-y-4 sm:space-y-6">
                     <!-- Username Field -->
                     <div class="relative">
-                        <label class="block text-purple-200 mb-2 font-medium">Username</label>
+                        <label class="block text-purple-200 mb-2 text-sm sm:font-medium">Username</label>
                         <div class="relative">
-                            <i class="fas fa-user absolute left-4 top-1/2 transform -translate-y-1/2 text-purple-300"></i>
                             <input type="text" name="Username" required 
-                                   class="form-input w-full pl-12 pr-4 py-4 bg-white/10 border border-white/20 rounded-xl text-black placeholder-purple-300 focus:border-purple-400 focus:ring-2 focus:ring-purple-400/20 focus:bg-white/20"
-                                   placeholder="Enter your username">
+                                  class="form-input w-full pr-3 py-2 sm:py-3 bg-white/10 border border-white/20 rounded-xl text-black placeholder-purple-300 focus:border-purple-400 focus:ring-2 focus:ring-purple-400/20 focus:bg-white/20 text-sm sm:text-base"
+                                  placeholder="Enter your username">
                         </div>
                     </div>
                     
                     <!-- Password Field -->
                     <div class="relative">
-                        <label class="block text-purple-200 mb-2 font-medium">Password</label>
+                        <label class="block text-purple-200 mb-2 text-sm sm:font-medium">Password</label>
                         <div class="relative">
-                            <i class="fas fa-lock absolute left-4 top-1/2 transform -translate-y-1/2 text-purple-300"></i>
                             <input type="password" name="Password" required 
-                                   class="form-input w-full pl-12 pr-4 py-4 bg-white/10 border border-white/20 rounded-xl text-black placeholder-purple-300 focus:border-purple-400 focus:ring-2 focus:ring-purple-400/20 focus:bg-white/20"
-                                   placeholder="Enter your password">
+                                  class="form-input w-full pr-3 py-2 sm:py-3 bg-white/10 border border-white/20 rounded-xl text-black placeholder-purple-300 focus:border-purple-400 focus:ring-2 focus:ring-purple-400/20 focus:bg-white/20 text-sm sm:text-base"
+                                  placeholder="Enter your password">
                         </div>
                     </div>
                     
                     <!-- Remember Me & Forgot Password -->
-                    <div class="flex items-center justify-between text-sm">
+                    <div class="flex items-center justify-between text-xs sm:text-sm">
                         <label class="flex items-center text-purple-200">
                             <input type="checkbox" class="rounded border-purple-400 text-purple-500 focus:ring-purple-400 bg-white/10 mr-2">
                             Remember me
@@ -235,17 +303,17 @@
                     </div>
                     
                     <!-- Submit Button -->
-                    <button type="submit" class="login-btn w-full text-white py-4 rounded-xl font-semibold text-lg relative z-10">
+                    <button type="submit" class="login-btn w-full text-white py-2 sm:py-3 rounded-xl font-semibold text-base sm:text-lg relative z-10">
                         <span class="relative z-10 flex items-center justify-center">
-                            <i class="fas fa-sign-in-alt mr-2"></i>
+                            <i class="fas fa-sign-in-alt mr-2 text-sm sm:text-base"></i>
                             Sign In
                         </span>
                     </button>
                 </form>
                 
                 <!-- Signup Link -->
-                <div class="mt-8 text-center">
-                    <p class="text-purple-200">Don't have an account? 
+                <div class="mt-6 sm:mt-8 text-center">
+                    <p class="text-purple-200 text-sm sm:text-base">Don't have an account? 
                         <a href="/signup" class="text-purple-300 hover:text-white font-medium transition-colors duration-300 underline underline-offset-4 decoration-purple-400">
                             Create one now
                         </a>
@@ -280,25 +348,27 @@
             
             // Add button click animation
             const loginBtn = document.querySelector('.login-btn');
-            loginBtn.addEventListener('click', function(e) {
-                // Create ripple effect
-                const ripple = document.createElement('span');
-                const rect = this.getBoundingClientRect();
-                const size = Math.max(rect.width, rect.height);
-                const x = e.clientX - rect.left - size / 2;
-                const y = e.clientY - rect.top - size / 2;
-                
-                ripple.style.width = ripple.style.height = size + 'px';
-                ripple.style.left = x + 'px';
-                ripple.style.top = y + 'px';
-                ripple.classList.add('ripple');
-                
-                this.appendChild(ripple);
-                
-                setTimeout(() => {
-                    ripple.remove();
-                }, 600);
-            });
+            if (loginBtn) {
+                loginBtn.addEventListener('click', function(e) {
+                    // Create ripple effect
+                    const ripple = document.createElement('span');
+                    const rect = this.getBoundingClientRect();
+                    const size = Math.max(rect.width, rect.height);
+                    const x = e.clientX - rect.left - size / 2;
+                    const y = e.clientY - rect.top - size / 2;
+                    
+                    ripple.style.width = ripple.style.height = size + 'px';
+                    ripple.style.left = x + 'px';
+                    ripple.style.top = y + 'px';
+                    ripple.classList.add('ripple');
+                    
+                    this.appendChild(ripple);
+                    
+                    setTimeout(() => {
+                        ripple.remove();
+                    }, 600);
+                });
+            }
         });
         
         // Add CSS for ripple effect

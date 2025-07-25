@@ -61,11 +61,6 @@
             transform: scaleX(1);
         }
         
-        .task-card:hover {
-            transform: translateY(-8px) scale(1.02);
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
-        }
-        
         .priority-high { border-left: 4px solid #ef4444; }
         .priority-medium { border-left: 4px solid #f59e0b; }
         .priority-low { border-left: 4px solid #3b82f6; }
@@ -179,13 +174,11 @@
             background: linear-gradient(135deg, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0.15) 100%);
         }
 
-
-        /* media-queries.css*/
-        /* Small devices (phones, 576px and down) */
-        @media only screen and (max-width: 576px) {
-            /* Header adjustments */
+        /* Mobile-specific styles */
+        @media (max-width: 640px) {
+            /* Header */
             header .container {
-                padding: 1rem;
+                padding: 1rem !important;
             }
             
             header .flex.justify-between {
@@ -194,48 +187,68 @@
             }
             
             header .flex.items-center.space-x-4 {
+                flex-wrap: wrap;
                 justify-content: center;
-                text-align: center;
+                gap: 0.5rem;
             }
             
             header .time-badge,
             header a {
                 font-size: 0.8rem;
-                padding: 0.5rem;
+                padding: 0.5rem 0.75rem;
             }
             
             /* Stats grid */
             .grid.grid-cols-1.md\:grid-cols-4 {
-                grid-template-columns: 1fr 1fr;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 0.5rem;
+            }
+            
+            .stats-card {
+                padding: 0.75rem !important;
+            }
+            
+            .stats-card div:first-child {
+                font-size: 1.25rem !important;
+            }
+            
+            .stats-card div:last-child {
+                font-size: 0.7rem !important;
             }
             
             /* Search and filter bar */
             .glass-card.rounded-2xl {
-                padding: 1rem;
+                padding: 1rem !important;
             }
             
             .flex.flex-col.lg\:flex-row {
-                gap: 1rem;
+                gap: 0.75rem;
             }
             
             /* Filter buttons */
             .flex.flex-wrap.gap-2 {
-                justify-content: center;
+                gap: 0.5rem;
             }
             
             .filter-btn {
-                padding: 0.5rem 1rem;
-                font-size: 0.8rem;
+                padding: 0.5rem 0.75rem !important;
+                font-size: 0.8rem !important;
+            }
+            
+            .filter-btn i {
+                margin-right: 0.25rem !important;
             }
             
             /* Sort dropdown */
             #sortSelect {
                 width: 100%;
+                padding: 0.5rem !important;
+                font-size: 0.8rem !important;
             }
             
             /* Task cards */
             .task-card {
-                padding: 1rem;
+                padding: 1rem !important;
             }
             
             .task-card .flex.justify-between.items-start {
@@ -243,135 +256,75 @@
                 gap: 0.5rem;
             }
             
+            .task-card h3 {
+                font-size: 1rem !important;
+            }
+            
+            .task-card p {
+                font-size: 0.85rem !important;
+            }
+            
             .task-card .flex.items-center.space-x-2 {
-                margin-top: 0.5rem;
-            }
-            
-            /* Empty state */
-            .empty-state {
-                padding: 2rem 1rem;
-            }
-            
-            /* Modal adjustments */
-            .modal-content {
-                margin: 1rem;
-                padding: 1rem;
-            }
-        }
-
-        /* Medium devices (tablets, 577px to 768px) */
-        @media only screen and (min-width: 577px) and (max-width: 768px) {
-            /* Header adjustments */
-            header .container {
-                padding: 1.5rem;
-            }
-            
-            /* Stats grid */
-            .grid.grid-cols-1.md\:grid-cols-4 {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            
-            /* Search and filter bar */
-            .flex.flex-col.lg\:flex-row {
-                flex-direction: column;
-            }
-            
-            /* Task grid */
-            #tasksGrid {
-                grid-template-columns: 1fr;
-            }
-            
-            /* Filter buttons */
-            .filter-btn {
-                padding: 0.5rem 1rem;
-            }
-        }
-
-        /* Large devices (laptops, 769px to 992px) */
-        @media only screen and (min-width: 769px) and (max-width: 992px) {
-            /* Header adjustments */
-            header .container {
-                padding: 2rem;
-            }
-            
-            /* Stats grid */
-            .grid.grid-cols-1.md\:grid-cols-4 {
-                grid-template-columns: repeat(4, 1fr);
-            }
-            
-            /* Task grid */
-            #tasksGrid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            
-            /* Search and filter bar */
-            .flex.flex-col.lg\:flex-row {
-                flex-direction: row;
-                flex-wrap: wrap;
-            }
-            
-            .relative.flex-1 {
-                min-width: 100%;
-            }
-        }
-
-        /* Extra large devices (large laptops and desktops, 993px to 1200px) */
-        @media only screen and (min-width: 993px) and (max-width: 1200px) {
-            /* Task grid */
-            #tasksGrid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
-        /* Extra adjustments for very small screens (below 400px) */
-        @media only screen and (max-width: 400px) {
-            /* Header buttons */
-            header .flex.items-center.space-x-4 {
-                flex-wrap: wrap;
-                justify-content: center;
-            }
-            
-            header a {
-                margin-top: 0.5rem;
-            }
-            
-            /* Stats grid */
-            .grid.grid-cols-1.md\:grid-cols-4 {
-                grid-template-columns: 1fr;
+                margin-top: 0.75rem;
+                width: 100%;
+                justify-content: flex-end;
             }
             
             /* Action buttons */
             .btn-action {
-                width: 28px !important;
-                height: 28px !important;
+                width: 32px !important;
+                height: 32px !important;
             }
             
-            /* Task card text */
-            .task-card h3 {
-                font-size: 1rem;
+            .btn-action i {
+                font-size: 0.7rem !important;
             }
             
-            .task-card p {
-                font-size: 0.8rem;
+            /* Empty state */
+            .empty-state {
+                padding: 1.5rem !important;
+            }
+            
+            .empty-state .w-24 {
+                width: 3.5rem !important;
+                height: 3.5rem !important;
+            }
+            
+            .empty-state h3 {
+                font-size: 1.25rem !important;
+            }
+            
+            .empty-state p {
+                font-size: 0.9rem !important;
+            }
+            
+            /* Modal */
+            .modal-content {
+                margin: 1rem;
+                padding: 1.25rem;
+                width: calc(100% - 2rem);
+            }
+            
+            /* Form inputs */
+            input, textarea, select {
+                padding: 0.75rem !important;
+                font-size: 0.9rem !important;
             }
         }
 
-        /* Orientation-specific adjustments */
-        @media screen and (orientation: landscape) and (max-width: 768px) {
-            /* Header */
-            header .container {
-                padding: 1rem;
+        /* Tablet styles */
+        @media (min-width: 641px) and (max-width: 768px) {
+            .stats-grid {
+                grid-template-columns: repeat(4, 1fr);
+                gap: 0.75rem;
             }
             
-            /* Main content */
-            main {
-                padding: 1rem;
+            .task-card {
+                padding: 1.25rem !important;
             }
             
-            /* Task container */
-            #tasksContainer {
-                max-height: 60vh;
-                overflow-y: auto;
+            #tasksGrid {
+                grid-template-columns: repeat(2, 1fr);
             }
         }
 
@@ -379,7 +332,6 @@
         @media 
         only screen and (-webkit-min-device-pixel-ratio: 2),
         only screen and (min-resolution: 192dpi) {
-            /* Enhance visual quality */
             .glass-card {
                 backdrop-filter: blur(30px);
             }
@@ -392,133 +344,93 @@
                 background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
             }
         }
-
-        /* Print styles */
-        @media print {
-            /* Hide unnecessary elements */
-            header .flex.items-center.space-x-4:last-child,
-            .glass-card:first-child {
-                display: none;
-            }
-            
-            /* Adjust layout */
-            #tasksGrid {
-                grid-template-columns: 1fr !important;
-            }
-            
-            /* Task cards */
-            .task-card {
-                break-inside: avoid;
-                page-break-inside: avoid;
-                border: 1px solid #ddd;
-                box-shadow: none !important;
-            }
-            
-            /* Remove background colors */
-            body, .glass-card, .stats-card {
-                background: white !important;
-                color: black !important;
-            }
-            
-            /* Links */
-            a {
-                color: black !important;
-                text-decoration: underline;
-            }
-            
-            /* Hide interactive elements */
-            .filter-btn, #searchInput, #sortSelect, .btn-action {
-                display: none !important;
-            }
-        }
-
-
     </style>
 </head>
 <body class="bg-gradient-to-br from-purple-50 via-blue-50 to-indigo-100 min-h-screen">
     <!-- Header -->
     <header class="gradient-bg text-white shadow-2xl sticky top-0 z-50">
-        <div class="container mx-auto px-6 py-6">
+        <div class="container mx-auto px-4 py-4 sm:px-6 sm:py-6">
             <div class="flex justify-between items-center">
-                <div class="flex items-center space-x-4">
-                    <div class="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center">
-                        <i class="fas fa-list-check text-2xl"></i>
+                <div class="flex items-center space-x-3 sm:space-x-4">
+                    <div class="w-10 h-10 sm:w-12 sm:h-12 bg-white/20 rounded-xl flex items-center justify-center">
+                        <i class="fas fa-list-check text-xl sm:text-2xl"></i>
                     </div>
                     <div>
-                        <h1 class="text-2xl font-bold">All Tasks Overview</h1>
-                        <p class="text-purple-100 text-sm">Manage and track all your tasks</p>
+                        <h1 class="text-xl sm:text-2xl font-bold">All Tasks Overview</h1>
+                        <p class="text-purple-100 text-xs sm:text-sm">Manage and track all your tasks</p>
                     </div>
                 </div>
-                <div class="flex items-center space-x-4">
-                    <div class="time-badge">
-                        <i class="far fa-calendar-alt mr-2"></i>
-                        {{ .now.Format "Monday, January 2" }}
-                    </div>
-                    <a href="/" class="bg-white/20 hover:bg-white/30 px-4 py-2 rounded-xl transition-all duration-300 hover:scale-105">
-                        <i class="fas fa-home mr-2"></i>Dashboard
+                <div class="flex items-center space-x-2 sm:space-x-4">
+                    <!-- <div class="time-badge">
+                        <i class="far fa-calendar-alt mr-1 sm:mr-2"></i>
+                        <span class="hidden sm:inline">{{ .now.Format "Monday, January 2" }}</span>
+                        <span class="sm:hidden">{{ .now.Format "Mon, Jan 2" }}</span>
+                    </div> -->
+                    <a href="/dashboard" class="bg-white/20 hover:bg-white/30 px-3 py-1.5 sm:px-4 sm:py-2 rounded-xl transition-all duration-300 hover:scale-105 text-xs sm:text-sm">
+                        <i class="fas fa-home mr-1 sm:mr-2"></i>Dashboard
                     </a>
-                    <a href="/logout" class="bg-white text-purple-600 px-4 py-2 rounded-xl hover:bg-purple-50 transition-all duration-300 hover:scale-105 font-medium">
-                        <i class="fas fa-sign-out-alt mr-2"></i>Logout
+                    <a href="/logout" class="bg-white text-purple-600 px-3 py-1.5 sm:px-4 sm:py-2 rounded-xl hover:bg-purple-50 transition-all duration-300 hover:scale-105 font-medium text-xs sm:text-sm">
+                        <i class="fas fa-sign-out-alt mr-1 sm:mr-2"></i>Logout
                     </a>
                 </div>
             </div>
             
             <!-- Stats Section -->
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mt-6">
-                <div class="stats-card rounded-xl p-4 text-center">
-                    <div class="text-2xl font-bold text-white" id="totalTasks">{{ len .allTasks }}</div>
-                    <div class="text-purple-100 text-sm">Total Tasks</div>
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-4 mt-4 sm:mt-6">
+                <div class="stats-card rounded-xl p-2 sm:p-4 text-center">
+                    <div class="text-xl sm:text-2xl font-bold text-white" id="totalTasks">{{ len .allTasks }}</div>
+                    <div class="text-purple-100 text-xs sm:text-sm">Total Tasks</div>
                 </div>
-                <div class="stats-card rounded-xl p-4 text-center">
-                    <div class="text-2xl font-bold text-white" id="completedTasks">0</div>
-                    <div class="text-purple-100 text-sm">Completed</div>
+                <div class="stats-card rounded-xl p-2 sm:p-4 text-center">
+                    <div class="text-xl sm:text-2xl font-bold text-white" id="completedTasks">0</div>
+                    <div class="text-purple-100 text-xs sm:text-sm">Completed</div>
                 </div>
-                <div class="stats-card rounded-xl p-4 text-center">
-                    <div class="text-2xl font-bold text-white" id="pendingTasks">0</div>
-                    <div class="text-purple-100 text-sm">Pending</div>
+                <div class="stats-card rounded-xl p-2 sm:p-4 text-center">
+                    <div class="text-xl sm:text-2xl font-bold text-white" id="pendingTasks">0</div>
+                    <div class="text-purple-100 text-xs sm:text-sm">Pending</div>
                 </div>
-                <div class="stats-card rounded-xl p-4 text-center">
-                    <div class="text-2xl font-bold text-white" id="completionRate">0%</div>
-                    <div class="text-purple-100 text-sm">Completion Rate</div>
+                <div class="stats-card rounded-xl p-2 sm:p-4 text-center">
+                    <div class="text-xl sm:text-2xl font-bold text-white" id="completionRate">0%</div>
+                    <div class="text-purple-100 text-xs sm:text-sm">Completion Rate</div>
                 </div>
             </div>
         </div>
     </header>
 
     <!-- Main Content -->
-    <main class="container mx-auto px-6 py-8 page-enter">
+    <main class="container mx-auto px-4 py-6 sm:px-6 sm:py-8 page-enter">
         <!-- Search and Filter Bar -->
-        <div class="glass-card rounded-2xl shadow-xl p-6 mb-8">
-            <div class="flex flex-col lg:flex-row gap-4 items-center justify-between">
+        <div class="glass-card rounded-2xl shadow-xl p-4 sm:p-6 mb-6 sm:mb-8">
+            <div class="flex flex-col lg:flex-row gap-3 sm:gap-4 items-center justify-between">
                 <!-- Search Input -->
-                <div class="relative flex-1 w-full lg:w-auto">
-                    <i class="fas fa-search absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+                <div class="relative flex-1 w-full">
+                    <i class="fas fa-search absolute left-3 sm:left-4 top-1/2 transform -translate-y-1/2 text-gray-400 text-sm sm:text-base"></i>
                     <input type="text" id="searchInput" placeholder="Search tasks..." 
-                           class="search-input w-full pl-12 pr-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-purple-400 focus:border-transparent bg-white/70">
+                           class="search-input w-full pl-10 sm:pl-12 pr-3 sm:pr-4 py-2 sm:py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-purple-400 focus:border-transparent bg-white/70 text-sm sm:text-base">
                 </div>
                 
                 <!-- Filter Buttons -->
-                <div class="flex flex-wrap gap-2">
-                    <button class="filter-btn active px-4 py-2 rounded-xl bg-gray-100 text-gray-700 font-medium" data-filter="all">
-                        <i class="fas fa-list mr-2"></i>All Tasks
+                <div class="flex flex-wrap gap-2 justify-center w-full lg:w-auto">
+                    <button class="filter-btn active px-3 py-1.5 sm:px-4 sm:py-2 rounded-xl bg-gray-100 text-gray-700 font-medium text-xs sm:text-sm" data-filter="all">
+                        <i class="fas fa-list mr-1 sm:mr-2"></i>All
                     </button>
-                    <button class="filter-btn px-4 py-2 rounded-xl bg-gray-100 text-gray-700 font-medium" data-filter="pending">
-                        <i class="fas fa-clock mr-2"></i>Pending
+                    <button class="filter-btn px-3 py-1.5 sm:px-4 sm:py-2 rounded-xl bg-gray-100 text-gray-700 font-medium text-xs sm:text-sm" data-filter="pending">
+                        <i class="fas fa-clock mr-1 sm:mr-2"></i>Pending
                     </button>
-                    <button class="filter-btn px-4 py-2 rounded-xl bg-gray-100 text-gray-700 font-medium" data-filter="completed">
-                        <i class="fas fa-check-circle mr-2"></i>Completed
+                    <button class="filter-btn px-3 py-1.5 sm:px-4 sm:py-2 rounded-xl bg-gray-100 text-gray-700 font-medium text-xs sm:text-sm" data-filter="completed">
+                        <i class="fas fa-check-circle mr-1 sm:mr-2"></i>Done
                     </button>
-                    <button class="filter-btn px-4 py-2 rounded-xl bg-gray-100 text-gray-700 font-medium" data-filter="high">
-                        <i class="fas fa-exclamation-triangle mr-2"></i>High Priority
+                    <button class="filter-btn px-3 py-1.5 sm:px-4 sm:py-2 rounded-xl bg-gray-100 text-gray-700 font-medium text-xs sm:text-sm" data-filter="high">
+                        <i class="fas fa-exclamation-triangle mr-1 sm:mr-2"></i>High
                     </button>
                 </div>
                 
                 <!-- Sort Dropdown -->
-                <select id="sortSelect" class="px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-purple-400 focus:border-transparent bg-white/70">
-                    <option value="due-asc">Due Date (Earliest)</option>
-                    <option value="due-desc">Due Date (Latest)</option>
-                    <option value="priority-desc">Priority (High to Low)</option>
-                    <option value="priority-asc">Priority (Low to High)</option>
+                <select id="sortSelect" class="px-3 py-2 sm:px-4 sm:py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-purple-400 focus:border-transparent bg-white/70 text-xs sm:text-sm w-full lg:w-auto">
+                    <option value="due-asc">Due (Earliest)</option>
+                    <option value="due-desc">Due (Latest)</option>
+                    <option value="priority-desc">Priority (High)</option>
+                    <option value="priority-asc">Priority (Low)</option>
                     <option value="title-asc">Title (A-Z)</option>
                     <option value="title-desc">Title (Z-A)</option>
                 </select>
@@ -528,9 +440,9 @@
         <!-- Tasks Grid -->
         <div id="tasksContainer">
             {{ if .allTasks }}
-                <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6" id="tasksGrid">
+                <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4 sm:gap-6" id="tasksGrid">
                     {{ range .allTasks }}
-                    <div class="task-card glass-card rounded-2xl shadow-lg p-6 
+                    <div class="task-card glass-card rounded-2xl shadow-lg p-4 sm:p-6 
                         {{ if .Completed }} 
                             priority-completed opacity-75 
                         {{ else }} 
@@ -544,47 +456,47 @@
                         data-priority="{{ .Priority }}"
                         data-due-time="{{ .DueTime.Format "2006-01-02T15:04" }}">
                         
-                        <div class="flex justify-between items-start mb-4">
+                        <div class="flex justify-between items-start mb-3 sm:mb-4">
                             <div class="flex items-center space-x-2">
                                 {{ if eq .Priority 3 }}
-                                    <span class="w-3 h-3 bg-red-500 rounded-full"></span>
-                                    <span class="px-2 py-1 bg-red-100 text-red-600 rounded-full text-xs font-medium">High</span>
+                                    <span class="w-2 h-2 sm:w-3 sm:h-3 bg-red-500 rounded-full"></span>
+                                    <span class="px-1.5 py-0.5 sm:px-2 sm:py-1 bg-red-100 text-red-600 rounded-full text-xs font-medium">High</span>
                                 {{ else if eq .Priority 2 }}
-                                    <span class="w-3 h-3 bg-yellow-500 rounded-full"></span>
-                                    <span class="px-2 py-1 bg-yellow-100 text-yellow-600 rounded-full text-xs font-medium">Medium</span>
+                                    <span class="w-2 h-2 sm:w-3 sm:h-3 bg-yellow-500 rounded-full"></span>
+                                    <span class="px-1.5 py-0.5 sm:px-2 sm:py-1 bg-yellow-100 text-yellow-600 rounded-full text-xs font-medium">Medium</span>
                                 {{ else }}
-                                    <span class="w-3 h-3 bg-blue-500 rounded-full"></span>
-                                    <span class="px-2 py-1 bg-blue-100 text-blue-600 rounded-full text-xs font-medium">Low</span>
+                                    <span class="w-2 h-2 sm:w-3 sm:h-3 bg-blue-500 rounded-full"></span>
+                                    <span class="px-1.5 py-0.5 sm:px-2 sm:py-1 bg-blue-100 text-blue-600 rounded-full text-xs font-medium">Low</span>
                                 {{ end }}
                             </div>
                             
                             {{ if .Completed }}
-                                <div class="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center">
-                                    <i class="fas fa-check text-green-600 text-sm"></i>
+                                <div class="w-6 h-6 sm:w-8 sm:h-8 bg-green-100 rounded-full flex items-center justify-center">
+                                    <i class="fas fa-check text-green-600 text-xs sm:text-sm"></i>
                                 </div>
                             {{ end }}
                         </div>
                         
-                        <h3 class="text-lg font-semibold text-gray-800 mb-2 {{ if .Completed }} line-through text-gray-500 {{ end }}">
+                        <h3 class="text-base sm:text-lg font-semibold text-gray-800 mb-1 sm:mb-2 {{ if .Completed }} line-through text-gray-500 {{ end }}">
                             {{ .Title }}
                         </h3>
                         
                         {{ if .Description }}
-                        <p class="text-gray-600 mb-4 text-sm {{ if .Completed }} line-through {{ end }}">{{ .Description }}</p>
+                        <p class="text-gray-600 mb-3 sm:mb-4 text-xs sm:text-sm {{ if .Completed }} line-through {{ end }}">{{ .Description }}</p>
                         {{ end }}
                         
-                        <div class="flex items-center justify-between text-sm text-gray-500 mb-4">
+                        <div class="flex items-center justify-between text-xs sm:text-sm text-gray-500 mb-3 sm:mb-4">
                             <div class="flex items-center">
-                                <i class="far fa-calendar mr-2 text-purple-500"></i>
-                                <span class="font-medium">{{ .DueTime.Format "Jan 2, 2006" }}</span>
+                                <i class="far fa-calendar mr-1 sm:mr-2 text-purple-500"></i>
+                                <span class="font-medium">{{ .DueTime.Format "Jan 2" }}</span>
                             </div>
                             <div class="flex items-center">
-                                <i class="far fa-clock mr-2 text-purple-500"></i>
+                                <i class="far fa-clock mr-1 sm:mr-2 text-purple-500"></i>
                                 <span class="font-medium">{{ .DueTime.Format "3:04 PM" }}</span>
                             </div>
                         </div>
                         
-                        <div class="flex items-center justify-between pt-4 border-t border-gray-100">
+                        <div class="flex items-center justify-between pt-3 sm:pt-4 border-t border-gray-100">
                             <div class="text-xs text-gray-400">
                                 {{ if .Completed }}
                                     <i class="fas fa-check-circle mr-1 text-green-500"></i>Completed
@@ -593,9 +505,9 @@
                                 {{ end }}
                             </div>
                             
-                            <div class="flex items-center space-x-2">
+                            <div class="flex items-center space-x-1 sm:space-x-2">
                                 <form action="/tasks/{{ .ID }}/toggle" method="POST">
-                                    <button type="submit" class="btn-action w-8 h-8 rounded-full flex items-center justify-center 
+                                    <button type="submit" class="btn-action w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center 
                                         {{ if .Completed }} 
                                             bg-green-100 text-green-600 hover:bg-green-200 
                                         {{ else }} 
@@ -606,7 +518,7 @@
                                 </form>
                                 
                                 <button onclick="openEditModal(this)" 
-                                        class="btn-action w-8 h-8 rounded-full bg-blue-100 text-blue-600 hover:bg-blue-200 flex items-center justify-center"
+                                        class="btn-action w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-blue-100 text-blue-600 hover:bg-blue-200 flex items-center justify-center"
                                         data-id="{{ .ID }}"
                                         data-title="{{ .Title }}"
                                         data-description="{{ .Description }}"
@@ -616,7 +528,7 @@
                                 </button>
                                 
                                 <form action="/tasks/{{ .ID }}/delete" method="POST">
-                                    <button type="submit" class="btn-action w-8 h-8 rounded-full bg-red-100 text-red-600 hover:bg-red-200 flex items-center justify-center"
+                                    <button type="submit" class="btn-action w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-red-100 text-red-600 hover:bg-red-200 flex items-center justify-center"
                                             onclick="return confirm('Are you sure you want to delete this task?')">
                                         <i class="fas fa-trash text-xs"></i>
                                     </button>
@@ -627,14 +539,14 @@
                     {{ end }}
                 </div>
             {{ else }}
-                <div class="empty-state glass-card rounded-2xl shadow-lg p-12 text-center">
-                    <div class="w-24 h-24 bg-gradient-to-r from-purple-400 to-pink-400 rounded-full flex items-center justify-center mx-auto mb-6">
-                        <i class="fas fa-tasks text-white text-3xl"></i>
+                <div class="empty-state glass-card rounded-2xl shadow-lg p-6 sm:p-12 text-center">
+                    <div class="w-16 h-16 sm:w-24 sm:h-24 bg-gradient-to-r from-purple-400 to-pink-400 rounded-full flex items-center justify-center mx-auto mb-4 sm:mb-6">
+                        <i class="fas fa-tasks text-white text-xl sm:text-3xl"></i>
                     </div>
-                    <h3 class="text-2xl font-bold text-gray-700 mb-2">No tasks created yet!</h3>
-                    <p class="text-gray-500 mb-6">Start by creating your first task to boost your productivity.</p>
-                    <a href="/" class="inline-flex items-center bg-gradient-to-r from-purple-600 to-pink-600 text-white px-6 py-3 rounded-xl font-semibold hover:from-purple-700 hover:to-pink-700 transition-all duration-300 transform hover:scale-105">
-                        <i class="fas fa-plus mr-2"></i>Create Your First Task
+                    <h3 class="text-xl sm:text-2xl font-bold text-gray-700 mb-1 sm:mb-2">No tasks created yet!</h3>
+                    <p class="text-gray-500 mb-4 sm:mb-6 text-sm sm:text-base">Start by creating your first task to boost your productivity.</p>
+                    <a href="/" class="inline-flex items-center bg-gradient-to-r from-purple-600 to-pink-600 text-white px-4 py-2 sm:px-6 sm:py-3 rounded-xl font-semibold hover:from-purple-700 hover:to-pink-700 transition-all duration-300 transform hover:scale-105 text-sm sm:text-base">
+                        <i class="fas fa-plus mr-1 sm:mr-2"></i>Create First Task
                     </a>
                 </div>
             {{ end }}
@@ -643,44 +555,44 @@
 
     <!-- Edit Modal -->
     <div id="editModal" class="fixed inset-0 modal-backdrop flex items-center justify-center z-50 hidden">
-        <div class="modal-content glass-card rounded-2xl shadow-2xl p-6 w-full max-w-md mx-4">
-            <div class="flex justify-between items-center mb-6">
-                <h3 class="text-xl font-bold text-gray-800">Edit Task</h3>
+        <div class="modal-content glass-card rounded-2xl shadow-2xl p-4 sm:p-6 w-full max-w-md mx-2 sm:mx-4">
+            <div class="flex justify-between items-center mb-4 sm:mb-6">
+                <h3 class="text-lg sm:text-xl font-bold text-gray-800">Edit Task</h3>
                 <button onclick="closeEditModal()" class="text-gray-500 hover:text-gray-700 transition-colors">
-                    <i class="fas fa-times text-lg"></i>
+                    <i class="fas fa-times text-base sm:text-lg"></i>
                 </button>
             </div>
             
-            <form id="editTaskForm" method="POST" enctype="application/x-www-form-urlencoded" class="space-y-4">
+            <form id="editTaskForm" method="POST" enctype="application/x-www-form-urlencoded" class="space-y-3 sm:space-y-4">
                 <div>
-                    <label class="block text-gray-700 font-medium mb-2">Title</label>
+                    <label class="block text-gray-700 font-medium mb-1 sm:mb-2 text-sm sm:text-base">Title</label>
                     <input type="text" name="title" id="editTitle" required 
-                           class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-purple-400 focus:border-transparent transition-all duration-300">
+                           class="w-full px-3 py-2 sm:px-4 sm:py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-purple-400 focus:border-transparent transition-all duration-300 text-sm sm:text-base">
                 </div>
                 
                 <div>
-                    <label class="block text-gray-700 font-medium mb-2">Description</label>
+                    <label class="block text-gray-700 font-medium mb-1 sm:mb-2 text-sm sm:text-base">Description</label>
                     <textarea name="description" id="editDescription" rows="3"
-                              class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-purple-400 focus:border-transparent transition-all duration-300 resize-none"></textarea>
+                              class="w-full px-3 py-2 sm:px-4 sm:py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-purple-400 focus:border-transparent transition-all duration-300 resize-none text-sm sm:text-base"></textarea>
                 </div>
                 
                 <div>
-                    <label class="block text-gray-700 font-medium mb-2">Due Time</label>
+                    <label class="block text-gray-700 font-medium mb-1 sm:mb-2 text-sm sm:text-base">Due Time</label>
                     <input type="datetime-local" name="due_time" id="editDueTime" required 
-                           class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-purple-400 focus:border-transparent transition-all duration-300">
+                           class="w-full px-3 py-2 sm:px-4 sm:py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-purple-400 focus:border-transparent transition-all duration-300 text-sm sm:text-base">
                 </div>
                 
                 <div>
-                    <label class="block text-gray-700 font-medium mb-2">Priority</label>
-                    <select name="priority" id="editPriority" class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-purple-400 focus:border-transparent transition-all duration-300">
+                    <label class="block text-gray-700 font-medium mb-1 sm:mb-2 text-sm sm:text-base">Priority</label>
+                    <select name="priority" id="editPriority" class="w-full px-3 py-2 sm:px-4 sm:py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-purple-400 focus:border-transparent transition-all duration-300 text-sm sm:text-base">
                         <option value="1">🔵 Low Priority</option>
                         <option value="2">🟡 Medium Priority</option>
                         <option value="3">🔴 High Priority</option>
                     </select>
                 </div>
                 
-                <button type="submit" class="w-full bg-gradient-to-r from-purple-600 to-pink-600 text-white py-3 rounded-xl font-semibold hover:from-purple-700 hover:to-pink-700 transition-all duration-300 transform hover:scale-105">
-                    <i class="fas fa-save mr-2"></i>Update Task
+                <button type="submit" class="w-full bg-gradient-to-r from-purple-600 to-pink-600 text-white py-2 sm:py-3 rounded-xl font-semibold hover:from-purple-700 hover:to-pink-700 transition-all duration-300 transform hover:scale-105 text-sm sm:text-base">
+                    <i class="fas fa-save mr-1 sm:mr-2"></i>Update Task
                 </button>
             </form>
         </div>
@@ -837,15 +749,15 @@
             if (!emptyState) {
                 emptyState = document.createElement('div');
                 emptyState.id = 'emptyState';
-                emptyState.className = 'empty-state glass-card rounded-2xl shadow-lg p-12 text-center col-span-full';
+                emptyState.className = 'empty-state glass-card rounded-2xl shadow-lg p-6 text-center col-span-full';
                 emptyState.innerHTML = `
-                    <div class="w-24 h-24 bg-gradient-to-r from-purple-400 to-pink-400 rounded-full flex items-center justify-center mx-auto mb-6">
-                        <i class="fas fa-search text-white text-3xl"></i>
+                    <div class="w-16 h-16 bg-gradient-to-r from-purple-400 to-pink-400 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-search text-white text-xl"></i>
                     </div>
-                    <h3 class="text-2xl font-bold text-gray-700 mb-2">No tasks found</h3>
-                    <p class="text-gray-500 mb-6">Try adjusting your search or filter criteria.</p>
-                    <button onclick="clearFilters()" class="bg-gradient-to-r from-purple-600 to-pink-600 text-white px-6 py-3 rounded-xl font-semibold hover:from-purple-700 hover:to-pink-700 transition-all duration-300 transform hover:scale-105">
-                        <i class="fas fa-refresh mr-2"></i>Clear Filters
+                    <h3 class="text-xl font-bold text-gray-700 mb-2">No tasks found</h3>
+                    <p class="text-gray-500 mb-4 text-sm">Try adjusting your search or filter criteria.</p>
+                    <button onclick="clearFilters()" class="bg-gradient-to-r from-purple-600 to-pink-600 text-white px-4 py-2 rounded-xl font-semibold hover:from-purple-700 hover:to-pink-700 transition-all duration-300 transform hover:scale-105 text-sm">
+                        <i class="fas fa-refresh mr-1"></i>Clear Filters
                     </button>
                 `;
                 document.getElementById('tasksGrid').appendChild(emptyState);
