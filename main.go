@@ -6,29 +6,23 @@ import (
 
 	"github.com/SinofPride-999/student-time-management/config"
 	"github.com/SinofPride-999/student-time-management/routes"
-	"github.com/joho/godotenv"
+	// "github.com/joho/godotenv"
 )
 
 func main() {
-	// Load environment variables from .env file
-	err := godotenv.Load()
-	if err != nil {
-		log.Fatal("Error loading .env file")
-	}
-	
-	// Initialize database
+	// Initialize database (now using SQLite)
 	config.ConnectDB()
 	config.AutoMigrate()
-	
+
 	// Setup router
 	r := routes.SetupRouter(config.DB)
-	
-	// Get port from environment
+
+	// Use environment variable or default to port 8080
 	port := os.Getenv("PORT")
 	if port == "" {
-		port = "8080" // fallback for local dev
+		port = "8080"
 	}
 
-	// Start server
+	log.Println("Server running at http://localhost:" + port)
 	log.Fatal(r.Run(":" + port))
 }
